@@ -17,6 +17,16 @@ export class DeseosService {
     return this.listas;
   }
 
+  getLista(id: string | number): Lista {
+    // estamos asegurandonos de trabajar con numeros
+    // porque asi esta defindo en Lista
+    id = Number(id);
+
+    return this.listas.find(listaData =>
+      listaData.id === id
+    );
+  }
+
   addLista(titulo: string) {
     const nueva = new Lista(titulo);
     this.listas.push(nueva);
@@ -30,7 +40,7 @@ export class DeseosService {
   }
 
   loadStorage() {
-    if(localStorage.getItem('data')){
+    if (localStorage.getItem('data')) {
       this.listas = JSON.parse(localStorage.getItem('data'));
     } else {
       this.listas = [];
