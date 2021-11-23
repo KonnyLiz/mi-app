@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Lista } from 'src/app/models/lista.model';
 import { DeseosService } from 'src/app/services/deseos.service';
 
@@ -12,9 +13,14 @@ export class Tab1Page {
   listas: Lista[] = [];
 
   constructor(
-    public deseos: DeseosService
+    public deseos: DeseosService,
+    private router: Router
   ) {
     this.listas = deseos.getListas();
+  }
+
+  addLista(){
+    this.router.navigateByUrl('/tabs/agregar');
   }
 
 }
