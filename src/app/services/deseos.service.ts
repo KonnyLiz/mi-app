@@ -10,13 +10,30 @@ export class DeseosService {
   listas: Lista[] = [];
 
   constructor() {
-    const lista1 = new Lista('Ver One Piece');
-    const lista2 = new Lista('Ver One Piece x2');
-
-    this.listas.push(lista1, lista2);
+    this.loadStorage();
   }
 
-  getListas(){
+  getListas() {
     return this.listas;
+  }
+
+  addLista(titulo: string) {
+    const nueva = new Lista(titulo);
+    this.listas.push(nueva);
+    this.addStorage();
+    return nueva.id;
+  }
+
+  addStorage() {
+    // json stringify permite crear un texto plano de un arreglo
+    localStorage.setItem('data', JSON.stringify(this.listas));
+  }
+
+  loadStorage() {
+    if(localStorage.getItem('data')){
+      this.listas = JSON.parse(localStorage.getItem('data'));
+    } else {
+      this.listas = [];
+    }
   }
 }
