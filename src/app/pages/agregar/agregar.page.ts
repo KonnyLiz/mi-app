@@ -45,7 +45,7 @@ export class AgregarPage implements OnInit {
     // verificamos cuantos pendientes hay en la lista
     const pendientes = this.lista.items.filter(data => !data.estado).length;
 
-    if(pendientes === 0){
+    if (pendientes === 0) {
       this.lista.completed_at = new Date();
       this.lista.completed = true;
     } else {
@@ -53,6 +53,12 @@ export class AgregarPage implements OnInit {
       this.lista.completed = false;
     }
 
+    this.deseos.addStorage();
+  }
+
+  borrar(i: number) {
+    // posicion y cuantos item borraria
+    this.lista.items.splice(i, 1);
     this.deseos.addStorage();
   }
 

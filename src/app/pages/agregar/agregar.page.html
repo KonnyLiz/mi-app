@@ -17,11 +17,16 @@
 
     <ion-list>
         <ion-list-header color="ligth">Tareas por hacer:</ion-list-header>
-        <ion-item-sliding>
-            <ion-item color="dark" *ngFor="let l of lista.items" class="animated fadeIn">
+        <ion-item-sliding *ngFor="let l of lista.items; let i = index" class="animated fadeIn">
+            <ion-item color="dark">
                 <ion-checkbox slot="start" [(ngModel)]="l.estado" (ionChange)="cambioCheck(l)"></ion-checkbox>
                 <ion-label>{{ l.descripcion }}</ion-label>
             </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="danger">
+                    <ion-icon slot="icon-only" (click)="borrar(i)" name="trash-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
         </ion-item-sliding>
     </ion-list>
 
