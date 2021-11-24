@@ -41,4 +41,19 @@ export class AgregarPage implements OnInit {
     }
   }
 
+  cambioCheck(lista: ListaItem) {
+    // verificamos cuantos pendientes hay en la lista
+    const pendientes = this.lista.items.filter(data => !data.estado).length;
+
+    if(pendientes === 0){
+      this.lista.completed_at = new Date();
+      this.lista.completed = true;
+    } else {
+      this.lista.completed_at = null;
+      this.lista.completed = false;
+    }
+
+    this.deseos.addStorage();
+  }
+
 }

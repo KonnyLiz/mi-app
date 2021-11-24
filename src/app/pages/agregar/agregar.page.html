@@ -17,8 +17,8 @@
 
     <ion-list>
         <ion-list-header color="ligth">Tareas por hacer:</ion-list-header>
-        <ion-item color="dark" *ngFor="let l of lista.items">
-            <ion-checkbox slot="start" [(ngModel)]="l.estado"></ion-checkbox>
+        <ion-item color="dark" *ngFor="let l of lista.items" class="animated fadeIn">
+            <ion-checkbox slot="start" [(ngModel)]="l.estado" (ionChange)="cambioCheck(l)"></ion-checkbox>
             <ion-label>{{ l.descripcion }}</ion-label>
         </ion-item>
     </ion-list>
