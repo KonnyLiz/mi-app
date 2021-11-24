@@ -1,3 +1,6 @@
-<p>
-  listas works!
-</p>
+<ion-list>
+    <ion-item *ngFor="let l of listas" detail color="dark" (click)="verLista(l.id)">
+        <ion-label>{{ l.titulo }}</ion-label>
+        <ion-note slot="end" color="primary">{{ l.items.length }}</ion-note>
+    </ion-item>
+</ion-list>
