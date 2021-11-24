@@ -16,7 +16,7 @@
     </ion-list>
 
     <ion-list>
-        <ion-list-header color="ligth">Tareas por hacer:</ion-list-header>
+        <ion-list-header color="ligth" *ngIf="lista.items.length > 0">Tareas por hacer:</ion-list-header>
         <ion-item-sliding *ngFor="let l of lista.items; let i = index" class="animated fadeIn">
             <ion-item color="dark">
                 <ion-checkbox slot="start" [(ngModel)]="l.estado" (ionChange)="cambioCheck(l)"></ion-checkbox>

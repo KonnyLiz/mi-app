@@ -60,4 +60,8 @@ export class Tab1Page {
     alerta.present();
   }
 
+  verLista(id: number) {
+    this.router.navigateByUrl(`/tabs/agregar/${id}`);
+  }
+
 }
