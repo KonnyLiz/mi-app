@@ -24,7 +24,7 @@ export class ListasComponent implements OnInit {
   ngOnInit() { }
 
   verLista(id: number) {
-    if (this.terminados === true) {
+    if (this.terminados) {
       this.router.navigateByUrl(`/tabs/tab2/agregar/${id}`);
     } else {
       this.router.navigateByUrl(`/tabs/tab1/agregar/${id}`);
