@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Lista } from '../../models/lista.model';
 import { DeseosService } from '../../services/deseos.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ListasComponent implements OnInit {
 
+  @Input() terminados = true;
+
   listas: Lista[] = [];
 
   constructor(
@@ -19,10 +21,14 @@ export class ListasComponent implements OnInit {
     this.listas = deseos.getListas();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   verLista(id: number) {
-    this.router.navigateByUrl(`/tabs/agregar/${id}`);
+    if (this.terminados === true) {
+      this.router.navigateByUrl(`/tabs/tab2/agregar/${id}`);
+    } else {
+      this.router.navigateByUrl(`/tabs/tab1/agregar/${id}`);
+    }
   }
 
 }
