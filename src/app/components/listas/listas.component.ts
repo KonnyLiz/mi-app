@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Lista } from '../../models/lista.model';
 import { DeseosService } from '../../services/deseos.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonList } from '@ionic/angular';
 
 @Component({
   selector: 'app-listas',
@@ -11,6 +11,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class ListasComponent implements OnInit {
 
+  // podemos tener insytancias de la vista por medio de viewchild
+  // podemos hacer referencia como componente local con #lista por ejemplo
+  // o referencia al componente con IonList, tomara solo uno, y si fuera Ionlist[] 
+  // tomaria el arreglo de ionlist
+
+  // el ionlist tiene funciones para cerrar todos los elementos abiertos
+  // servira para cerrar el boton de editar despues de actualizar el titulo
+  @ViewChild(IonList) viewLista: IonList;
   @Input() terminados = true;
 
   listas: Lista[] = [];
@@ -52,6 +60,7 @@ export class ListasComponent implements OnInit {
           role: 'cancel',
           handler: () => {
             console.log('cancelar');
+            this.viewLista.closeSlidingItems();
           }
         },
         {
@@ -62,6 +71,8 @@ export class ListasComponent implements OnInit {
             } else {
               // editar el nombre de la lista
               const idLista = this.deseos.editListaTitulo(valor.id, data.titulo);
+              // cerramos el ion slider con la instancia de la lista ionlist
+              this.viewLista.closeSlidingItems();
             }
           }
         }
