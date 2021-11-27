@@ -1,6 +1,15 @@
 <ion-list>
-    <ion-item *ngFor="let l of listas | filtroCompletado: terminados" detail color="dark" (click)="verLista(l.id)">
-        <ion-label>{{ l.titulo }}</ion-label>
-        <ion-note slot="end" color="primary">{{ l.items.length }}</ion-note>
-    </ion-item>
+    <ion-item-sliding *ngFor="let l of listas | filtroCompletado: terminados">
+        <ion-item-options side="start">
+            <ion-item-option color="warning">
+                <ion-icon slot="icon-only" (click)="editar(l)" name="pencil-outline"></ion-icon>
+            </ion-item-option>
+        </ion-item-options>
+
+        <ion-item detail color="dark" (click)="verLista(l.id)">
+            <ion-label>{{ l.titulo }}</ion-label>
+            <ion-note slot="end" color="primary">{{ l.items.length }}</ion-note>
+        </ion-item>
+
+    </ion-item-sliding>
 </ion-list>

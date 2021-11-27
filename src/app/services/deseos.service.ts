@@ -27,6 +27,20 @@ export class DeseosService {
     );
   }
 
+  editListaTitulo(id: string | number, txt: string) {
+    // estamos asegurandonos de trabajar con numeros
+    // porque asi esta defindo en Lista
+    id = Number(id);
+
+    this.listas.find(listaData => {
+      if(listaData.id === id){
+        listaData.titulo = txt;
+      }
+    });
+
+    this.addStorage();
+  }
+
   addLista(titulo: string) {
     const nueva = new Lista(titulo);
     this.listas.push(nueva);
